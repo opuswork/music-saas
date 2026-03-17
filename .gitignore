@@ -1,0 +1,25 @@
+# 1. 민감 정보 (절대 포함 금지)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 2. 빌드 및 실행 결과물
+dist/
+.next/
+node_modules/
+build/
+
+# 3. Prisma 관련 (SQLite 사용 시)
+*.db
+*.db-journal
+
+# 4. OS 관련
+.DS_Store
+
+# 5. Cursor MCP 관련
+cursor-talk-to-figma-mcp-main/
+
+# 6. 테스트 배포 관련
+prisma/migrations/

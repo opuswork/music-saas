@@ -1,0 +1,272 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 1. Users & Profiles
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  fullName     String?
+  firstName    String?
+  lastName     String?
+  role         UserRole @default(STUDENT)
+
+  // New: Gamification Fields
+  points Int @default(0) // Cumulative XP
+
+  createdAt   DateTime  @default(now())
+  lastLoginAt DateTime?
+
+  subscriptions     Subscription[]
+  courses           Course[] // 강사로서 등록한 강의
+  enrollments       Enrollment[] // 학생으로서 수강 중인 강의
+  practiceSessions  PracticeSession[]
+  grades            Grade[] // Quiz results
+  payments          Payment[]
+  progressSnapshots ProgressSnapshot[]
+}
+
+// --- New: Quiz & Grading System ---
+model Quiz {
+  id String @id @default(uuid())
+
+  courseId     String
+  title        String
+  description  String?
+  passingScore Int     @default(60) // Percentage or points needed
+  rewardPoints Int     @default(100) // Points awarded upon completion
+
+  course    Course     @relation(fields: [courseId], references: [id])
+  // 관계 설정 변경: Lesson을 참조함
+  lessonId  String
+  lesson    Lesson     @relation(fields: [lessonId], references: [id])
+  questions Question[]
+  grades    Grade[]
+}
+
+model Question {
+  id      String @id @default(uuid())
+  quizId  String
+  content String // The question text
+  options Json // e.g., ["C Major", "G Major", "D Minor"]
+  answer  String // The correct option
+  points  Int    @default(10) // Points per correct answer
+
+  quiz Quiz @relation(fields: [quizId], references: [id])
+}
+
+model Grade {
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Int // The score achieved (e.g., 85)
+  totalPoints Int // Points earned from this specific attempt
+  passed      Boolean
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  quiz Quiz @relation(fields: [quizId], references: [id])
+}
+
+enum UserRole {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+// 2. Subscriptions
+model Subscription {
+  id        String             @id @default(uuid())
+  userId    String
+  plan      SubscriptionPlan   @default(FREE)
+  status    SubscriptionStatus @default(ACTIVE)
+  startedAt DateTime           @default(now())
+  endedAt   DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum SubscriptionPlan {
+  FREE
+  BASIC
+  PRO
+  INSTITUTION
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAUSED
+  CANCELED
+}
+
+// 3. Courses & Curriculum
+model Course {
+  id           String   @id @default(uuid())
+  title        String
+  description  String?
+  category     Category
+  level        Level
+  instructorId String
+  published    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  instructor  User         @relation(fields: [instructorId], references: [id])
+  lessons     Lesson[]
+  enrollments Enrollment[]
+  //quizzes     Quiz[]
+  quizzes     Quiz[]
+}
+
+enum Category {
+  PIANO
+  VOCAL
+  THEORY
+  COMPOSITION
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Lesson {
+  id              String   @id @default(uuid())
+  title           String
+  orderIndex      Int
+  durationSeconds Int
+  createdAt       DateTime @default(now())
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id])
+
+  assets            LessonAsset[]
+  practiceSessions  PracticeSession[]
+  progressSnapshots ProgressSnapshot[]
+
+  // Lesson에 속한 퀴즈들 (양방향 관계 추가)
+  quizzes Quiz[]
+}
+
+model LessonAsset {
+  id       String    @id @default(uuid())
+  lessonId String
+  type     AssetType
+  url      String
+  metadata Json? // 템포, 키, 박자 등 저장
+
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+}
+
+enum AssetType {
+  VIDEO
+  PDF
+  MIDI
+  MUSICXML
+  AUDIO
+}
+
+// 4. Enrollments (수강 관계)
+model Enrollment {
+  id         String   @id @default(uuid())
+  userId     String
+  courseId   String
+  enrolledAt DateTime @default(now())
+  completed  Boolean  @default(false)
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId]) // 중복 수강 방지
+}
+
+// 5. Practice Data (플랫폼의 심장)
+model PracticeSession {
+  id        String    @id @default(uuid())
+  userId    String
+  lessonId  String
+  startedAt DateTime  @default(now())
+  endedAt   DateTime?
+  device    Device    @default(KEYBOARD)
+  tempo     Int?
+  accuracy  Float?
+
+  user   User            @relation(fields: [userId], references: [id])
+  lesson Lesson          @relation(fields: [lessonId], references: [id])
+  events PracticeEvent[]
+}
+
+enum Device {
+  KEYBOARD
+  MIC
+  TOUCH
+}
+
+model PracticeEvent {
+  id             String    @id @default(uuid())
+  sessionId      String
+  eventType      EventType
+  note           String?
+  expectedTimeMs Int
+  actualTimeMs   Int
+  velocity       Int?
+  createdAt      DateTime  @default(now())
+
+  session PracticeSession @relation(fields: [sessionId], references: [id])
+}
+
+enum EventType {
+  NOTE_ON
+  NOTE_OFF
+  ERROR
+  TEMPO_DEVIATION
+}
+
+// 6. Stats & Payments
+model ProgressSnapshot {
+  id                   String   @id @default(uuid())
+  userId               String
+  lessonId             String
+  avgAccuracy          Float
+  totalPracticeSeconds Int
+  lastPracticedAt      DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+
+  @@unique([userId, lessonId])
+}
+
+model Payment {
+  id        String          @id @default(uuid())
+  userId    String
+  provider  PaymentProvider
+  amount    Int
+  currency  String          @default("KRW")
+  status    PaymentStatus
+  createdAt DateTime        @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+}
+
+enum PaymentStatus {
+  PAID
+  FAILED
+  REFUNDED
+}

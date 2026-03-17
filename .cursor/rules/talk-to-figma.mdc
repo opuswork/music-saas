@@ -1,0 +1,14 @@
+---
+description: Use TalkToFigma MCP with project channel 7d2ghubs
+alwaysApply: true
+---
+
+# TalkToFigma MCP – Channel
+
+When using the **TalkToFigma** MCP server to communicate with Figma:
+
+1. **Join the project channel first**: Call the `join_channel` tool with channel **`7d2ghubs`** before any other Figma MCP tools (e.g. `get_document_info`, `read_my_design`, `get_selection`, etc.).
+2. The Figma plugin must be connected to the same channel: in the plugin UI, use the "Channel" field set to **7d2ghubs** (or ensure the plugin is using this channel).
+3. Ensure the WebSocket relay is running (`bun socket` or `bunx cursor-talk-to-figma-socket`) and the Figma plugin is connected before sending commands.
+
+Example: when the user asks to talk to Figma or modify/read designs, run `join_channel` with `channel: "7d2ghubs"` then proceed with the requested Figma operations.
