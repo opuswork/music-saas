@@ -1,0 +1,13 @@
+{
+    "name": "music-saas",
+    "version": "1.0.0",
+    "private": true,
+    "packageManager": "npm@11.1.0",
+    "workspaces": [
+      "apps/*",
+      "packages/*"
+    ],
+    "devDependencies": {
+      "turbo": "^2.8.17"
+    }
+  }
