@@ -1,0 +1,7 @@
+node_modules
+.next
+dist
+.git
+apps/*/node_modules
+services/*/node_modules
+packages/*/node_modules
