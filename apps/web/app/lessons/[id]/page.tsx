@@ -1,20 +1,15 @@
 // app/lessons/[id]/page.tsx
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw'; // A Plugin to allow html tags
-import dynamic from 'next/dynamic';
 import PracticeSection from '@/components/PracticeSection';
 import AudioPlayer from '@/components/AudioPlayer';
+// Client-only, lazy-loaded score renderer (see MusicScoreClient for why it lives in a client file)
+import MusicScore from '@/components/MusicScoreClient';
 import {
   extractYouTubeId,
   isLikelyMusicXml,
   parsePracticeJsonArray,
 } from '@/lib/lessonBlockMedia';
-
-// Load MusicScore component only on client side (to avoid SSR)
-const MusicScore = dynamic(() => import('@/components/MusicScore'), { 
-  ssr: false,
-  loading: () => <p className="text-center p-10 text-gray-400">악보 데이터를 불러오는 중...</p>
-});
 
 /** Replace old labels/classes in lesson content with KEY NOTES / key-notes-header */
 function replaceKeyTakeawaysWithKeyNotes(content: string): string {
