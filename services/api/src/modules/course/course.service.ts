@@ -54,7 +54,6 @@ export class CourseService {
       data: {
         title: dto.title,
         orderIndex: dto.orderIndex,
-        durationSeconds: dto.durationSeconds,
         courseId: dto.courseId,
       },
     });
@@ -71,7 +70,16 @@ export class CourseService {
   async findOneLesson(id: string) {
     return this.prisma.lesson.findUnique({
       where: { id },
-      include: { course: true, assets: true },
+      include: {
+        blocks: {
+          orderBy: { orderIndex: 'asc' },
+          include: {
+            asset: true, // 🌟 이 부분이 반드시 있어야 block.asset.url을 쓸 수 있습니다!
+          }
+        },
+        course: true,
+        assets: true,
+      },
     });
   }
 

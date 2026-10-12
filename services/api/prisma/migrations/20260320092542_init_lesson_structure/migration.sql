@@ -14,7 +14,13 @@ CREATE TYPE "Category" AS ENUM ('PIANO', 'VOCAL', 'THEORY', 'COMPOSITION');
 CREATE TYPE "Level" AS ENUM ('BEGINNER', 'INTERMEDIATE', 'ADVANCED');
 
 -- CreateEnum
+CREATE TYPE "BlockType" AS ENUM ('TEXT', 'VIDEO', 'IMAGE', 'PDF', 'MUSIC_SCORE', 'PRACTICE_TOOL', 'QUIZ');
+
+-- CreateEnum
 CREATE TYPE "AssetType" AS ENUM ('VIDEO', 'PDF', 'MIDI', 'MUSICXML', 'AUDIO');
+
+-- CreateEnum
+CREATE TYPE "PracticeType" AS ENUM ('MIDI_MATCH', 'MULTIPLE_CHOICE', 'EAR_TRAINING');
 
 -- CreateEnum
 CREATE TYPE "Device" AS ENUM ('KEYBOARD', 'MIC', 'TOUCH');
@@ -33,7 +39,9 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
-    "name" TEXT,
+    "fullName" TEXT,
+    "firstName" TEXT,
+    "lastName" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'STUDENT',
     "points" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -111,11 +119,23 @@ CREATE TABLE "Lesson" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "orderIndex" INTEGER NOT NULL,
-    "durationSeconds" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "courseId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Lesson_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "LessonBlock" (
+    "id" TEXT NOT NULL,
+    "lessonId" TEXT NOT NULL,
+    "type" "BlockType" NOT NULL,
+    "orderIndex" INTEGER NOT NULL,
+    "content" TEXT,
+    "assetId" TEXT,
+    "practiceId" TEXT,
+
+    CONSTRAINT "LessonBlock_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -143,13 +163,13 @@ CREATE TABLE "Enrollment" (
 -- CreateTable
 CREATE TABLE "PracticeSession" (
     "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
     "lessonId" TEXT NOT NULL,
-    "startedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "endedAt" TIMESTAMP(3),
-    "device" "Device" NOT NULL DEFAULT 'KEYBOARD',
-    "tempo" INTEGER,
-    "accuracy" DOUBLE PRECISION,
+    "userId" TEXT,
+    "title" TEXT NOT NULL,
+    "instructions" TEXT,
+    "type" "PracticeType" NOT NULL,
+    "correctData" JSONB NOT NULL,
+    "musicXmlUrl" TEXT,
 
     CONSTRAINT "PracticeSession_pkey" PRIMARY KEY ("id")
 );
@@ -227,6 +247,12 @@ ALTER TABLE "Course" ADD CONSTRAINT "Course_instructorId_fkey" FOREIGN KEY ("ins
 ALTER TABLE "Lesson" ADD CONSTRAINT "Lesson_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "LessonBlock" ADD CONSTRAINT "LessonBlock_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "LessonBlock" ADD CONSTRAINT "LessonBlock_assetId_fkey" FOREIGN KEY ("assetId") REFERENCES "LessonAsset"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "LessonAsset" ADD CONSTRAINT "LessonAsset_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -236,10 +262,10 @@ ALTER TABLE "Enrollment" ADD CONSTRAINT "Enrollment_userId_fkey" FOREIGN KEY ("u
 ALTER TABLE "Enrollment" ADD CONSTRAINT "Enrollment_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PracticeSession" ADD CONSTRAINT "PracticeSession_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PracticeSession" ADD CONSTRAINT "PracticeSession_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PracticeSession" ADD CONSTRAINT "PracticeSession_lessonId_fkey" FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PracticeSession" ADD CONSTRAINT "PracticeSession_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "PracticeEvent" ADD CONSTRAINT "PracticeEvent_sessionId_fkey" FOREIGN KEY ("sessionId") REFERENCES "PracticeSession"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
