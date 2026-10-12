@@ -19,6 +19,9 @@ export class PrismaService
     }
     super({
       adapter: new PrismaPg({ connectionString }),
+      // Never return password hashes from queries. A login check can opt in per query
+      // with `omit: { passwordHash: false }`.
+      omit: { user: { passwordHash: true } },
     });
   }
 
