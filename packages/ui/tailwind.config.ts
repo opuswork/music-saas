@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 // 가능하다면 packages/ui의 설정을 가져와서 합치는 게 좋지만, 
 // 우선은 아래 내용을 직접 추가하여 작동 여부를 확인하세요.
 
@@ -36,7 +37,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, typography],
 };
 
 export default config;
