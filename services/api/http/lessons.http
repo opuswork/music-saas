@@ -1,0 +1,19 @@
+### 변수 설정
+@hostname = localhost
+@port = 3001
+@baseUrl = http://{{hostname}}:{{port}}
+@lessonId = <실제_DB의_LESSON_UUID>
+
+### 1. 특정 레슨 상세 조회 (Blocks 포함)
+# 이 요청으로 Text, Video, Practice Block들이 순서대로 오는지 확인합니다.
+GET {{baseUrl}}/api/lessons/27a5bcbf-a6e0-4ff9-aa11-829d1306a45c
+Content-Type: application/json
+
+### 2. 레슨 내의 연습 세션(Practice) 조회
+# PracticeBlock에 연결된 practiceId로 상세 정보를 가져올 때 사용합니다.
+GET {{baseUrl}}/api/practice7af2963d-df5e-425f-b7ce-b630956c0cfb
+Content-Type: application/json
+
+### 3. 정적 파일 접근 테스트 (MusicXML)
+# seed.ts에 넣은 URL이 실제로 파일을 반환하는지 확인합니다.
+GET {{baseUrl}}/storage/c-major-scale.xml

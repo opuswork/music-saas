@@ -72,12 +72,11 @@ export class LessonController {
     return this.courseService.findLessonsByCourseId(courseId);
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get lesson by ID' })
-  @ApiParam({ name: 'id' })
-  findOne(@Param('id') id: string) {
-    return this.courseService.findOneLesson(id);
-  }
+  /**
+   * 단일 레슨 조회는 `LessonsModule`의 `GET /api/lessons/:id` 한 곳만 사용합니다.
+   * 여기에 `@Get(':id')`가 있으면 Nest에 동일 경로가 중복 등록되어,
+   * 먼저 등록된 핸들러가 `null` 등을 반환하며 빈 응답처럼 보일 수 있습니다.
+   */
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update a lesson' })
