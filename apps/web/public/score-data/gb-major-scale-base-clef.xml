@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <defaults>
+    <scaling>
+      <millimeters>4.5</millimeters> <tenths>40</tenths>
+    </scaling>
+    <page-layout>
+      <page-height>400</page-height> <page-width>3000</page-width>  <page-margins type="both">
+        <left-margin>20</left-margin>
+        <right-margin>20</right-margin>
+      </page-margins>
+    </page-layout>
+  </defaults>
+
+  <part-list>
+    <score-part id="P1"><part-name>Piano</part-name></score-part>
+  </part-list>
+
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key><fifths>0</fifths></key>
+        <!-- 7/4 박자는 유지하되 앞에 조표로 그리지 않음 -->
+        <time print-object="no"><beats>7</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <!-- 가사 세로 위치: OSMD는 default-y를 반영하지 않음. apps/web/components/MusicScore.tsx에서 stagger 적용 -->
+      <note><pitch><step>G</step><alter>-1</alter><octave>2</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-110"><style font-size="4"/><text>tonic</text></lyric>
+      </note>
+      <note><pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-100"><style font-size="4"/><text>supertonic</text></lyric>
+      </note>
+      <note><pitch><step>B</step><alter>-1</alter><octave>2</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-90"><style font-size="4"/><text>mediant</text></lyric>
+      </note>
+      <note><pitch><step>C</step><alter>-1</alter><octave>3</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-80"><style font-size="4"/><text>subdominant</text></lyric>
+      </note>
+      <note><pitch><step>D</step><alter>-1</alter><octave>3</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-70"><style font-size="4"/><text>dominant</text></lyric>
+      </note>
+      <note><pitch><step>E</step><alter>-1</alter><octave>3</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem><accidental>flat</accidental>
+        <lyric number="1" default-y="-60"><style font-size="4"/><text>submediant</text></lyric>
+      </note>
+      <note><pitch><step>F</step><octave>3</octave></pitch><duration>1</duration><type>quarter</type><stem>none</stem>
+        <lyric number="1" default-y="-50"><style font-size="4"/><text>leading tone</text></lyric>
+      </note>
+      <barline location="right"><bar-style>light-heavy</bar-style></barline>
+    </measure>
+  </part>
+</score-partwise>

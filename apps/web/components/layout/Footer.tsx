@@ -2,7 +2,13 @@
 
 import { Button } from "@repo/ui/components/ui/button";
 import { Input } from "@repo/ui/components/ui/input";
-import { Music, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import Music from "lucide-react/dist/esm/icons/music.js";
+import Mail from "lucide-react/dist/esm/icons/mail.js";
+import MapPin from "lucide-react/dist/esm/icons/map-pin.js";
+import Share2 from "lucide-react/dist/esm/icons/share-2.js";
+import MessageCircle from "lucide-react/dist/esm/icons/message-circle.js";
+import ImageIcon from "lucide-react/dist/esm/icons/image.js";
+import Link2 from "lucide-react/dist/esm/icons/link-2.js";
 
 const PROGRAMS_LINKS = ["Programs", "Lessons", "Quizzes", "Practice", "Tools"];
 const LESSONS_LINKS = ["Piano", "Theory", "Sight Reading", "Composition"];
@@ -101,10 +107,10 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex items-center gap-4">
               {[
-                { icon: <Facebook size={18} />, label: "Facebook" },
-                { icon: <Twitter size={18} />, label: "Twitter" },
-                { icon: <Instagram size={18} />, label: "Instagram" },
-                { icon: <Linkedin size={18} />, label: "LinkedIn" },
+                { icon: <Share2 size={18} />, label: "Facebook" },
+                { icon: <MessageCircle size={18} />, label: "Twitter" },
+                { icon: <ImageIcon size={18} />, label: "Instagram" },
+                { icon: <Link2 size={18} />, label: "LinkedIn" },
               ].map((social) => (
                 <Button 
                   key={social.label} 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key>
+          <fifths>0</fifths>
+        </key>
+        <time print-object="no">
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>I</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>do</text></lyric>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>II</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>re</text></lyric>
+      </note>
+      <note>
+        <pitch><step>F</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <accidental>sharp</accidental> <lyric number="1"><text>III</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>mi</text></lyric>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>IV</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>fa</text></lyric>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>V</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>sol</text></lyric>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>VI</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>la</text></lyric>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <accidental>sharp</accidental> <lyric number="1"><text>VII</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>ti</text></lyric>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <stem>none</stem>
+        <lyric number="1"><text>VIII/I</text></lyric>
+        <lyric number="2"><style font-style="italic"/><text>do</text></lyric>
+      </note>
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>

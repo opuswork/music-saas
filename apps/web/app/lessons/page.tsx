@@ -1,7 +1,44 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import Link from "next/link";
 
-export default function LessonsPage() {
+type LessonListItem = {
+  id: string;
+  title: string;
+  description: string;
+  orderIndex: number;
+};
+
+async function fetchLessons(): Promise<LessonListItem[]> {
+  const raw =
+    process.env.LESSONS_API_BASE_URL?.replace(/\/$/, "") || "http://music-saas-api:4000";
+  const base = raw.endsWith("/api") ? raw : `${raw}/api`;
+  const url = `${base}/lessons`;
+
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(`Lessons API ${res.status}: ${url}`);
+  }
+
+  const data = (await res.json()) as unknown;
+  if (!Array.isArray(data)) return [];
+
+  return data
+    .filter(
+      (item): item is LessonListItem =>
+        !!item &&
+        typeof item === "object" &&
+        typeof (item as LessonListItem).id === "string" &&
+        typeof (item as LessonListItem).title === "string" &&
+        typeof (item as LessonListItem).description === "string" &&
+        typeof (item as LessonListItem).orderIndex === "number",
+    )
+    .sort((a, b) => a.orderIndex - b.orderIndex);
+}
+
+export default async function LessonsPage() {
+  const lessons = await fetchLessons();
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
@@ -32,18 +69,36 @@ export default function LessonsPage() {
           </div>
 
           <section className="w-full max-w-[1200px] mx-auto py-12 px-6">
-            <h2 className="text-2xl font-bold tracking-tight">Lessons</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-bold tracking-tight">Lesson 1</h3>
-                <p className="text-sm text-muted-foreground">여기에 레슨을 챕터별로 정리해서 넣을 것입니다.</p>
+            <h2 className="text-2xl font-bold tracking-tight mb-4">Lessons</h2>
+
+            <div className="overflow-hidden rounded-2xl border border-border bg-white">
+              <div className="border-b border-border bg-muted/30 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                1. Fundamentals of Music Theory
               </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-4">
-                <h3 className="text-lg font-bold tracking-tight">Lesson 2</h3>
-                <p className="text-sm text-muted-foreground">This is a lesson</p>
-              </div>
+
+              {lessons.map((lesson) => (
+                <div
+                  key={lesson.id}
+                  className="flex items-start gap-4 border-b border-border px-6 py-4 last:border-b-0"
+                >
+                  <img
+                    src="/assets/icons/clef.png"
+                    alt=""
+                    className="mt-1 h-8 w-8 shrink-0 object-contain"
+                  />
+                  <div>
+                    <h3 className="text-2xl leading-tight text-foreground hover:underline">
+                      <Link href={`/lessons/${lesson.id}`}>{lesson.title}</Link>
+                    </h3>
+                    <p className="mt-1 text-lg text-muted-foreground">
+                      {lesson.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              {lessons.length === 0 && (
+                <div className="px-6 py-8 text-muted-foreground">No lessons found.</div>
+              )}
             </div>
           </section>
         </section>

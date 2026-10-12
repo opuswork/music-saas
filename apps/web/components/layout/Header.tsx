@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { Button } from "@repo/ui/components/ui/button";
-import { Menu, X, Music } from "lucide-react"; // 아이콘 라이브러리 활용
+// Direct icon imports avoid Next.js barrel optimization issues on Windows (ENOENT on dist/esm/icons/*.js).
+import Menu from "lucide-react/dist/esm/icons/menu.js";
+import X from "lucide-react/dist/esm/icons/x.js";
+import Music from "lucide-react/dist/esm/icons/music.js";
 import { cn } from "@repo/ui/lib/utils"; // shadcn 설치 시 생성된 유틸리티
 
 const NAV_LINKS = [

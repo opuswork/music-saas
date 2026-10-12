@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@repo/ui": "file:../../packages/ui",
-    "lucide-react": "latest",
+    "lucide-react": "^0.468.0",
     "next": "14.2.18",
+    "opensheetmusicdisplay": "^1.9.7",
+    "osmd-audio-player": "^0.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {

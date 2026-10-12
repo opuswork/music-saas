@@ -1,0 +1,199 @@
+[
+  {
+    "id": 1,
+    "groupId": "p1",
+    "type": "input",
+    "image": "/images/lesson-data/1-practice/interval-half-step-d-eb-1.png",
+    "question": "Identify the following interval in the major scale as a half step or a whole step.",
+    "answer": "half"
+  },
+  {
+    "id": 2,
+    "groupId": "p1",
+    "type": "input",
+    "image": "/images/lesson-data/1-practice/interval-half-step-f-g-2.png",
+    "question": "Identify the following interval in the major scale as a half step or a whole step.",
+    "answer": "whole"
+  },
+  {
+    "id": 3,
+    "groupId": "p1",
+    "type": "input",
+    "image": "/images/lesson-data/1-practice/interval-half-step-bb-c-3.png",
+    "question": "Identify the following interval in the major scale as a half step or a whole step.",
+    "answer": "whole"
+  },
+  {
+    "id": 4,
+    "groupId": "p1",
+    "type": "input",
+    "image": "/images/lesson-data/1-practice/interval-half-step-eb-f-4.png",
+    "question": "Identify the following interval in the major scale as a half step or a whole step.",
+    "answer": "whole"
+  },
+
+  {
+    "id": 5,
+    "groupId": "p2",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/eb-major-scale.png",
+    "question": "Identify the following major scale:",
+    "options": ["Eb Major", "Gb Major", "E Major", "Bb Major"],
+    "answer": "Eb Major"
+  },
+  {
+    "id": 6,
+    "groupId": "p2",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/e-major-scale.png",
+    "question": "Identify the following major scale:",
+    "options": ["Eb Major", "Gb Major", "E Major", "Bb Major"],
+    "answer": "E Major"
+  },
+  {
+    "id": 7,
+    "groupId": "p2",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/a-major-scale.png",
+    "question": "Identify the following major scale:",
+    "options": ["A Major", "Gb Major", "E Major", "Bb Major"],
+    "answer": "A Major"
+  },
+  {
+    "id": 8,
+    "groupId": "p2",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/f-major-scale.png",
+    "question": "Identify the following major scale:",
+    "options": ["F Major", "Gb Major", "E Major", "Bb Major"],
+    "answer": "F Major"
+  },
+  {
+    "id": 9,
+    "groupId": "p2",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/C-sharp-major-scale.png",
+    "question": "Identify the following major scale:",
+    "options": ["G Major", "Gb Major", "C# Major", "Bb Major"],
+    "answer": "C# Major"
+  },
+  {
+    "id": 10,
+    "groupId": "p3",
+    "type": "drag-matching",
+    "image": "/images/lesson-data/2-practice/g-major-scale-in-bass-clef.png",
+    "question": "Major scale solfege matching in the bass clef:",
+    "items": [
+      { "id": "slot-0", "correct": "Sol" },
+      { "id": "slot-1", "correct": "La" },
+      { "id": "slot-2", "correct": "Ti" },
+      { "id": "slot-3", "correct": "Do" },
+      { "id": "slot-4", "correct": "Re" },
+      { "id": "slot-5", "correct": "Mi" },
+      { "id": "slot-6", "correct": "Fa" }
+    ],
+    "options": ["Mi", "La", "Re", "Sol", "Ti", "Fa", "Do", "Te", "Ra"],
+    "answer": "serialized_matching" 
+  },
+
+  {
+    "id": 11,
+    "groupId": "p4",  
+    "type": "choice",
+    "question": "Which solfège syllable corresponds to the leading tone in a major scale?",
+    "options": ["Re", "La", "Ti", "Fa"],
+    "answer": "Ti"
+  },
+  {
+    "id": 12,
+    "groupId": "p4",  
+    "type": "choice",
+    "question": "Which scale degree name corresponds to Fa in a major scale?",
+    "options": ["Submediant", "Subdominant", "Leading Tone", "Dominant"],
+    "answer": "Subdominant"
+  },
+  {
+    "id": 13,
+    "groupId": "p4",  
+    "type": "choice",
+    "question": "Which solfège syllable corresponds to the tonic in a major scale?",
+    "options": ["Do", "Re", "Mi", "Fa"],
+    "answer": "Do"
+  },
+  {
+    "id": 14,
+    "groupId": "p4",  
+    "type": "choice",
+    "question": "Which scale degree number corresponds to the subdominant in a major scale?",
+    "options": ["3", "4", "5", "6"],
+    "answer": "4"
+  },
+  {
+    "id": 15,
+    "groupId": "p4",  
+    "type": "choice",
+    "question": "Which solfège syllable corresponds to the mediant in a major scale?",
+    "options": ["Do", "Re", "Mi", "Fa"],
+    "answer": "Mi"
+  },
+
+  {
+    "id": 16,
+    "groupId": "p5",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/cb-major-key-signature.png",
+    "question": "Identify the above major key signature.",
+    "options": ["C Major", "G Major", "Cb Major", "Gb Major"],
+    "answer": "Cb Major"
+  },
+  {
+    "id": 17,
+    "groupId": "p5",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/alto-clef-f-major.png",
+    "question": "Identify the above major key signature.",
+    "options": ["Fb Major", "F Major", "Bb Major", "Cb Major"],
+    "answer": "F Major"
+  },
+  {
+    "id": 18,
+    "groupId": "p5",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/alto-clef-bb-major.png",
+    "question": "Identify the above major key signature.",
+    "options": ["Fb Major", "Bb Major", "Cb Major", "Gb Major"],
+    "answer": "Bb Major"
+  },
+  {
+    "id": 19,
+    "groupId": "p5",  
+    "type": "choice",
+    "image": "/images/lesson-data/2-practice/base-clef-e-major.png",
+    "question": "Identify the above major key signature.",
+    "options": ["Eb Major", "E Major", "Bb Major", "Cb Major"],
+    "answer": "E Major"
+  },
+  
+  {
+    "id": 20,
+    "groupId": "p6",
+    "type": "circle-matching",
+    "question": "Circle of Fifths Matching (Major Scales)",
+    "items": [
+      { "id": "slot-0", "correct": "C" },
+      { "id": "slot-1", "correct": "G" },
+      { "id": "slot-2", "correct": "D" },
+      { "id": "slot-3", "correct": "A" },
+      { "id": "slot-4", "correct": "E" },
+      { "id": "slot-5", "correct": "B/Cb" },
+      { "id": "slot-6", "correct": "F#/Gb" },
+      { "id": "slot-7", "correct": "Db/C#" },
+      { "id": "slot-8", "correct": "Ab" },
+      { "id": "slot-9", "correct": "Eb" },
+      { "id": "slot-10", "correct": "Bb" },
+      { "id": "slot-11", "correct": "F" }
+    ],
+    "options": ["Bb", "E", "G", "Db/C#", "A", "C", "F", "Ab", "Eb", "F#/Gb", "D", "B/Cb"],
+    "answer": "serialized_matching"
+  }
+]

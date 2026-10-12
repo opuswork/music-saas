@@ -2,7 +2,7 @@
 
 import { Button } from "@repo/ui/components/ui/button";
 import { Input } from "@repo/ui/components/ui/input";
-import { Music } from "lucide-react";
+import Music from "lucide-react/dist/esm/icons/music.js";
 import Image from "next/image";
 
 export default function LoginPage() {

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <defaults>
+    <scaling>
+      <millimeters>6.0</millimeters> <tenths>40</tenths>
+    </scaling>
+  </defaults>
+  <part-list>
+    <score-part id="P1"><part-name>Piano</part-name></score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key><fifths>0</fifths></key>
+        <time print-object="no"><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+
+      <note>
+        <pitch><step>F</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-60">
+          <style font-size="7"/>
+          <text>1</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>G</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-90">
+          <style font-size="7"/>
+          <text>2</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>A</step><alter>-1</alter><octave>2</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-60">
+          <style font-size="7"/>
+          <text>3</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>B</step><alter>-2</alter><octave>2</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat-flat</accidental>
+        <lyric number="1" default-y="-90">
+          <style font-size="7"/>
+          <text>4</text>
+        </lyric>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-60">
+          <style font-size="7"/>
+          <text>5</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>D</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-90">
+          <style font-size="7"/>
+          <text>6</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>E</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-60">
+          <style font-size="7"/>
+          <text>7</text>
+        </lyric>
+      </note>
+
+      <note>
+        <pitch><step>F</step><alter>-1</alter><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <accidental>flat</accidental>
+        <lyric number="1" default-y="-90">
+          <style font-size="7"/>
+          <text>1</text>
+        </lyric>
+      </note>
+
+      <barline location="right"><bar-style>light-heavy</bar-style></barline>
+    </measure>
+  </part>
+</score-partwise>
