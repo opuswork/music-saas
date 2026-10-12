@@ -2,6 +2,26 @@ node_modules
 .next
 dist
 .git
+.turbo
 apps/*/node_modules
 services/*/node_modules
 packages/*/node_modules
+
+# Secrets — containers get config from docker-compose environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# DB dumps, reference material and local tools (not needed in images)
+/*.sql
+/services/api/full_schema.sql
+*.pdf
+*.tsbuildinfo
+/*.jpg
+/*.webp
+/*.xml
+/Docker cheatsheat*
+/scheme.prisma-backup
+/cursor-talk-to-figma-mcp-main
+/sanc
+/storage

@@ -5,7 +5,7 @@ services:
     container_name: music-saas-db
     restart: always
     ports:
-      - "5433:5432" 
+      - "127.0.0.1:5433:5432" # 이 PC에서만 접속 가능 (외부 네트워크 차단)
     volumes:
       - music-saas_postgres_data:/var/lib/postgresql/data
     environment:
