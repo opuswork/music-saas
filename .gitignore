@@ -23,3 +23,18 @@ cursor-talk-to-figma-mcp-main/
 
 # 6. 테스트 배포 관련
 prisma/migrations/
+
+# 7. TypeScript 빌드 캐시
+*.tsbuildinfo
+
+# 8. DB 덤프 / 백업 (실제 데이터 포함 가능 — 커밋 금지)
+/*.sql
+/scheme.prisma-backup
+
+# 9. 참고 자료 (PDF, 이미지, 문서)
+/*.pdf
+/OPEN-MUSIC-THEORY-*.xml
+/*.jpg
+/*.webp
+/Docker cheatsheat.html
+/Docker cheatsheat_files/
